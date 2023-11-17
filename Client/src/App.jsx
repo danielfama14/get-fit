@@ -1,3 +1,5 @@
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
@@ -5,10 +7,16 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
+
 function App() {
   const [count, setCount] = useState(0);
 
   return (
+    <ApolloProvider client={client}>
     <Router>
       <div>
         <nav>
@@ -48,6 +56,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </ApolloProvider>
   );
 }
 
