@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-
+const trackerSchema = require('./Tracker');
+const recipesSchema = require('./Recipes');
 const userSchema = new Schema(
     {
         username: {
@@ -18,6 +19,18 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
+        weight: {
+            type: Number
+        },
+        height: {
+            type: Number
+        },
+        goal: {
+            type: String,
+            required: true
+        },
+        tracker: [trackerSchema],
+        recipes: [recipesSchema],
     },
     // set this to use virtual below
     {
@@ -41,9 +54,9 @@ userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
 
-// when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
-userSchema.virtual('bookCount').get(function () {
-    return this.savedBooks.length;
+// query user's diet plans 
+userSchema.virtual('recipeCount').get(function () {
+    return this.recipes.length;
 });
 
 const User = model('User', userSchema);
