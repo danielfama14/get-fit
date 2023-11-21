@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const dbConfig = require('./db.config.js');
+const dbConfig = require('../db.config.js');
+
 
 // Connect to MongoDB
 mongoose.connect(dbConfig.url, {
@@ -8,9 +9,9 @@ mongoose.connect(dbConfig.url, {
 });
 
 // Example data
-const User = require('./models.js'); // Adjust path as necessary
+const User = require('../../models/User'); // Adjusted path
 const exampleUsers = [
-  { username: 'JohnDoe', email: 'john@example.com', password: 'password123' },
+  { username: 'JohnDoe', email: 'john@example.com', password: 'password123', goal: 'your goal here' }, //add a goal for each user
   // ... more users
 ];
 
