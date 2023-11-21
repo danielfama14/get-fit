@@ -30,7 +30,7 @@ const userSchema = new Schema(
             required: true
         },
         tracker: [trackerSchema],
-        recipes: [recipesSchema],
+        recipe: [recipesSchema],
     },
     // set this to use virtual below
     {
