@@ -44,48 +44,6 @@ export const QUERY_ME = gql`
     }
 `;
 
-export const QUERY_TRACKER = gql`
-    user {
-            _id
-            username
-            email
-            weight
-            height
-            goal
-            tracker {
-                trackerId
-                date
-                workedOut
-                caloriesBurned
-                stepsTaken
-                sleepDuration
-                waterIntake
-                notes
-            }
-    }
-`;
-
-export const QUERY_RECIPE = gql`
-    user {
-            _id
-            username
-            email
-            weight
-            height
-            goal
-            recipe {
-                recipeId
-                name
-                description
-                recipeIngredients {
-                    name
-                    quantity
-                }
-                instructions
-            }
-    }
-`;
-
 export const QUERY_SINGLE_TRACKER = gql`
     query getTracker($trackerId: ID!) {
         user {
