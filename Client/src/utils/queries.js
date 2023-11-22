@@ -88,7 +88,6 @@ export const QUERY_RECIPE = gql`
 
 export const QUERY_SINGLE_TRACKER = gql`
     query getTracker($trackerId: ID!) {
-        user {
             tracker(trackerId: $trackerId) {
                 trackerId
                 date
@@ -99,14 +98,12 @@ export const QUERY_SINGLE_TRACKER = gql`
                 waterIntake
                 notes
             }
-        }
     }
 `;
 
 export const QUERY_SINGLE_RECIPE = gql`
   query getRecipe($recipeId: ID!) {
-    user {
-      recipe(recipeId: $recipeId) {
+     recipe(recipeId: $recipeId) {
                 recipeId
                 name
                 description
@@ -116,6 +113,5 @@ export const QUERY_SINGLE_RECIPE = gql`
                 }
                 instructions
       }
-    }
   }
 `;
