@@ -15,10 +15,21 @@ const exampleUsers = [
   // ... more users
 ];
 
+mongoose.connect(dbConfig.url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log("Successfully connected to MongoDB.");
+  // You can place a simple query here to test the connection
+}).catch(err => {
+  console.error("Connection error", err);
+  process.exit();
+});
+
 // Insert data into the database
 async function seedDatabase() {
   try {
-    await User.insertMany(exampleUsers);
+    await User.insertMany(exampleUsers, { writeConcern: { wtimeout: 30000 } });
     console.log('Database seeded!');
     mongoose.connection.close();
   } catch (error) {
