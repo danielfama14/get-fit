@@ -26,8 +26,6 @@ type Recipe {
 type Query {
     users: [User]
     user: User
-    tracker(trackerId: ID!): User
-    recipe(recipeId: ID!): User
     getTracker(trackerId: ID!): Tracker
     getRecipe(recipeId: ID!): Recipe
 }
