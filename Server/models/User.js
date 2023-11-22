@@ -27,7 +27,6 @@ const userSchema = new Schema(
         },
         goal: {
             type: String,
-            required: true
         },
         tracker: [trackerSchema],
         recipe: [recipesSchema],
