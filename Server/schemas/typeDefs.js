@@ -8,12 +8,12 @@ type User {
 }
 type Tracker {
     trackerId: ID!
-    date: Date!
+    date: String!
     workedOut: Boolean!
-    caloriesBurned: Number
-    stepsTaken: Number
-    sleepDuration: Number
-    waterIntake: Number
+    caloriesBurned: Int
+    stepsTaken: Int
+    sleepDuration: Int
+    waterIntake: Int
     notes: String
 }
 type Recipe {
@@ -26,6 +26,10 @@ type Recipe {
 type Query {
     users: [User]
     user: User
+    tracker(trackerId: ID!): User
+    recipe(recipeId: ID!): User
+    getTracker(trackerId: ID!): Tracker
+    getRecipe(recipeId: ID!): Recipe
 }
 
 type Auth {
@@ -34,10 +38,10 @@ type Auth {
 }
 input TrackerInput {
     workedOut: Boolean!
-    caloriesBurned: Number
-    stepsTaken: Number
-    sleepDuration: Number
-    waterIntake: Number
+    caloriesBurned: Int
+    stepsTaken: Int
+    sleepDuration: Int
+    waterIntake: Int
     notes: String
 }
 input RecipeInput {
@@ -51,8 +55,8 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     trackToday(trackerInput: TrackerInput): User
     removeTracker(trackerId: ID!): User
-    favoriteRecipe: (recipeInput: RecipeInput): User
-    removeRecipe: (recipeId: ID!): User
+    favoriteRecipe(recipeInput: RecipeInput): User
+    removeRecipe(recipeId: ID!): User
 }
 `
 
