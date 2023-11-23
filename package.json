@@ -14,14 +14,5 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.8.7",
-    "apollo-server-express": "^3.13.0",
-    "bcrypt": "^5.1.1",
-    "chart.js": "^4.4.0",
-    "react-bootstrap": "^2.9.1",
-    "react-chartjs-2": "^5.2.0",
-    "react-router-dom": "^6.20.0"
   }
 }
