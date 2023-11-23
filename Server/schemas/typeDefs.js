@@ -4,7 +4,7 @@ type User {
     username: String
     email: String
     tracker: [Tracker]
-    recipe: [Recipe]
+    savedRecipes: [Recipe]
 }
 type Tracker {
     trackerId: ID!
