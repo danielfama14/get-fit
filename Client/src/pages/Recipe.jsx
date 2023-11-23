@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from '@apollo/client';
 
-import { QUERY_ME, QUERY_USER } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations'
 import Auth from '../utils/auth';
 import { removeRecipeId } from '../utils/localStorage';
@@ -11,7 +11,7 @@ import {
     Row,
     Col
 } from 'react-bootstrap';
-
+// import recipe pop up modal here
 
 const SavedRecipes = () => {
     const { loading, data } = useQuery(QUERY_ME);
@@ -54,12 +54,12 @@ const SavedRecipes = () => {
             </div>
             <Container>
                 <h2 className='pt-5'>
-                    {userData.savedRecipes.length
-                        ? `Viewing ${userData.savedRecipes.length} saved ${userData.savedRecipes.length === 1 ? 'recipe' : 'recipes'}:`
+                    {userData?.savedRecipes.length
+                        ? `Viewing ${userData?.savedRecipes.length} saved ${userData?.savedRecipes.length === 1 ? 'recipe' : 'recipes'}:`
                         : 'You have no saved recipes!'}
                 </h2>
                 <Row>
-                    {userData.savedRecipes.map((recipe) => {
+                    {userData?.savedRecipes.map((recipe) => {
                         return (
                             <Col md="4">
                                 <Card key={recipe.recipeId} border='dark'>

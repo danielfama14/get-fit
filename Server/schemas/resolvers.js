@@ -84,9 +84,9 @@ const resolvers = {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { recipe: recipeInput } },
+                    { $addToSet: { savedRecipes: recipeInput } },
                     { new: true }
-                ).select('-__v').populate('recipe');
+                ).select('-__v').populate('savedRecipes');
                 return updatedUser;
             }
         },
@@ -94,9 +94,9 @@ const resolvers = {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { recipe: { recipeId: recipeId } } },
+                    { $pull: { savedRecipes: { recipeId: recipeId } } },
                     { new: true }
-                ).select('-__v').populate('recipe');
+                ).select('-__v').populate('savedRecipes');
                 return updatedUser
             }
         },

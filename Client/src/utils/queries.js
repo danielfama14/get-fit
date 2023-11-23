@@ -29,7 +29,7 @@ export const QUERY_ME = gql`
                 waterIntake
                 notes
             }
-            recipe {
+            savedRecipes {
                 recipeId
                 name
                 description
@@ -62,7 +62,7 @@ export const QUERY_SINGLE_TRACKER = gql`
 
 export const QUERY_SINGLE_RECIPE = gql`
   query getRecipe($recipeId: ID!) {
-     recipe(recipeId: $recipeId) {
+    savedRecipes(recipeId: $recipeId) {
                 recipeId
                 name
                 description

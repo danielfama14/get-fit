@@ -1,13 +1,11 @@
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx';
 import Home from './pages/Home';
-import Signup from './pages/Signup';
-import LoginPage from './pages/LoginPage.jsx';
 import Profile from './pages/Profile';
 import ErrorPage from './pages/ErrorPage';
-
+import RecipePage from './pages/Recipe.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,18 +15,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />
-      }, {
-        path: '/LoginPage',
-        element: <LoginPage />
-      }, {
-        path: '/signup',
-        element: <Signup />
-      }, {
-        path: '/profiles/:username',
+      },
+      {
+        path: '/myGetFitProfile',
         element: <Profile />
-      }, {
-        path: '/me',
-        element: <Profile />
+      },
+      {
+        path: '/recipe',
+        element: <RecipePage />
       }
     ]
   },
