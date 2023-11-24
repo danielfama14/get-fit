@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_USER_INFORMATION } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
-
+import { Button } from 'react-bootstrap'
 import {
   MDBCol,
   MDBContainer,
@@ -166,9 +166,9 @@ const ProfilePage = () => {
                       />
                     </MDBCol>
                   </MDBRow>
-                  <MDBBtn type="submit">
+                  <Button className='me-1' type="submit">
                     Save Changes
-                  </MDBBtn>
+                  </Button>
 
                 </form>
               </MDBCardBody>
