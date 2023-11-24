@@ -57,6 +57,17 @@ const resolvers = {
             return { token, user };
         },
 
+        addUserInformation: async (parent, { userInput }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $set: userInput },
+                    { new: true }
+                ).select('-__v')
+                return updatedUser
+            }
+        },
+
         // for the tracker
         trackToday: async (parent, { trackerInput }, context) => {
             if (context.user) {

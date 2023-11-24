@@ -26,9 +26,6 @@ const AppNavbar = () => {
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/recipe'>
-                    See Your Recipes
-                  </Nav.Link>
                   <Nav.Link as={Link} to='/myGetFitProfile'>
                     Profile
                   </Nav.Link>
