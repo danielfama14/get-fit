@@ -166,7 +166,7 @@ const ProfilePage = () => {
                       />
                     </MDBCol>
                   </MDBRow>
-                  <MDBBtn disabled={!Object.values(userInput).some(value => value)} type="submit">
+                  <MDBBtn type="submit">
                     Save Changes
                   </MDBBtn>
 
