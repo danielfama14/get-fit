@@ -72,7 +72,7 @@ const ProfilePage = () => {
 
   return (
     <section style={{ backgroundColor: '#eee' }}>
-      <MDBContainer className="py-5">
+      <MDBContainer className="py-5 vh-100">
         <MDBRow>
           <MDBCol lg="4">
             <MDBCard className="mb-4">
