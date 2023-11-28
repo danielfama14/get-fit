@@ -1,7 +1,9 @@
+// WaterIntakeTracker.jsx
 import React, { useState } from 'react';
+import { useWaterCount } from './WaterCountContext';
 
 function WaterIntakeTracker() {
-  const [waterCount, setWaterCount] = useState(0);
+  const { waterCount, setWaterCount } = useWaterCount();
   const [manualInput, setManualInput] = useState('');
 
   const handleInputChange = (e) => {

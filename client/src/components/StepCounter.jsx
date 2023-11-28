@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useStepCounter } from '../components/StepCountContext';
 
 function StepCounter() {
-  const [stepCount, setStepCount] = useState(0);
+  const { stepCount, updateStepCount } = useStepCounter();
   const [manualInput, setManualInput] = useState('');
 
   const handleInputChange = (e) => {
@@ -11,7 +12,8 @@ function StepCounter() {
   const handleAddStep = () => {
     const parsedInput = parseInt(manualInput, 10);
     if (!isNaN(parsedInput)) {
-      setStepCount((count) => count + parsedInput);
+      const newCount = stepCount + parsedInput;
+      updateStepCount(newCount);
       setManualInput('');
     }
   };
