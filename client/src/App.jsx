@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import './App.css';
 import {
@@ -9,9 +10,10 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 
-// import Header from './components/Header';
-import Footer from './components/Footer';
+import { StepCounterProvider } from './components/StepCountContext';
+import { WaterCountProvider } from './components/WaterCountContext'; // Import the WaterCountProvider
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -40,9 +42,13 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Navbar />
-      <Outlet />
-      <Footer />
+      <StepCounterProvider>
+        <WaterCountProvider> 
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </WaterCountProvider>
+      </StepCounterProvider>
     </ApolloProvider>
   );
 }
