@@ -50,14 +50,14 @@ const Footer = () => {
   return (
     <footer className="w-100 m-auto bg-dark p-3 fixed-bottom text-sm">
       <div className="container text-center text-white mb-1">
-        {location.pathname !== '/' && (
+        {/* {location.pathname !== '/' && (
           <button
             className="btn btn-dark mb-3"
             onClick={() => navigate(-1)}
           >
             &larr; Go Back
           </button>
-        )}
+        )} */}
         <h4 className="text-sm">
           Made with{' '}
           <span

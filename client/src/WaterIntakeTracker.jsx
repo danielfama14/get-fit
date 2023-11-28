@@ -1,18 +1,78 @@
-// WaterIntakeTracker.jsx
-
 import React, { useState } from 'react';
 
 function WaterIntakeTracker() {
   const [waterCount, setWaterCount] = useState(0);
+  const [manualInput, setManualInput] = useState('');
+
+  const handleInputChange = (e) => {
+    setManualInput(e.target.value);
+  };
+
+  const handleAddWater = () => {
+    const parsedInput = parseInt(manualInput, 10);
+    if (!isNaN(parsedInput)) {
+      setWaterCount((count) => count + parsedInput);
+      setManualInput('');
+    }
+  };
+
+  const handleAdjustWater = (amount) => {
+    setManualInput((input) => {
+      const newValue = parseInt(input, 10) + amount;
+      return isNaN(newValue) ? '' : String(newValue);
+    });
+  };
 
   return (
-    <div>
-      <h2>Water Intake Tracker</h2>
-      <p>Water count: {waterCount} ml</p>
-      <button onClick={() => setWaterCount((count) => count + 250)}>
-        Add 250 ml
-      </button>
-      {/* You can add more features and styling as needed */}
+    <div style={{ textAlign: 'center', margin: '20px' }}>
+      <h2 style={{ color: 'blue' }}>Water Intake Tracker</h2>
+      <p style={{ fontSize: '18px' }}>Water count: {waterCount} ml</p>
+      <div>
+        <div>
+          {/* Increase arrow with 100 ml increment */}
+          <button
+            style={{
+              backgroundColor: 'green',
+              color: 'white',
+              padding: '10px',
+              marginRight: '10px',
+            }}
+            onClick={() => handleAdjustWater(100)}
+          >
+            +
+          </button>
+          {/* Decrease arrow with 100 ml decrement */}
+          <button
+            style={{
+              backgroundColor: 'red',
+              color: 'white',
+              padding: '10px',
+            }}
+            onClick={() => handleAdjustWater(-100)}
+          >
+            -
+          </button>
+        </div>
+        <div>
+          <input
+            type="number"
+            value={manualInput}
+            onChange={handleInputChange}
+            placeholder="Enter ml"
+            style={{ marginRight: '10px', padding: '5px' }}
+          />
+          <button
+            style={{
+              backgroundColor: 'orange',
+              color: 'white',
+              padding: '5px',
+            }}
+            onClick={handleAddWater}
+          >
+            Enter Water Intake
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

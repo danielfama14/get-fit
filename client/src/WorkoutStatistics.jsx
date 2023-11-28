@@ -1,8 +1,6 @@
-// WorkoutStatistics.jsx
-
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import 'chart.js/auto'; // Add this import to use the latest version of Chart.js
+import 'chart.js/auto';
 
 function WorkoutStatistics() {
   const data = {
@@ -19,7 +17,7 @@ function WorkoutStatistics() {
   const options = {
     scales: {
       x: {
-        type: 'category', // Use the 'category' scale for the X-axis
+        type: 'category',
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
       },
       y: {
@@ -29,10 +27,10 @@ function WorkoutStatistics() {
   };
 
   return (
-    <div>
-      <h2>Workout Statistics</h2>
+    <div style={{ textAlign: 'center', margin: '20px' }}>
+      <h2 style={{ color: 'purple' }}>Workout Statistics</h2>
       <Bar data={data} options={options} />
-      {/* You can customize the chart based on your needs */}
+      {/* Add more elements or customize the chart as needed */}
     </div>
   );
 }
