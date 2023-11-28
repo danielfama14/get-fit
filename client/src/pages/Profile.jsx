@@ -14,16 +14,16 @@ import {
   MDBBtn,
 } from 'mdb-react-ui-kit';
 
+
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 const ProfilePage = () => {
   const { loading, data } = useQuery(QUERY_ME);
-  // const userData = data?.user || {};
-  console.log('data: ', data);
 
   const [userData, setUserData] = useState('')
-
-  useEffect(() => {
-    setUserData(data?.user)
-  }, [data])
+  // for saved button: disable
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   console.log('user data ', userData)
   // updating user input state
@@ -34,6 +34,7 @@ const ProfilePage = () => {
     height: "",
     weight: "",
     fullName: "",
+    profilePicture: "",
   });
   const [addUserInformation] = useMutation(ADD_USER_INFORMATION, {
     refetchQueries: [{ query: QUERY_ME }]
@@ -51,11 +52,13 @@ const ProfilePage = () => {
       await addUserInformation({
         variables: { userInput: userInput },
       });
+      // Notification of saved
+      toastifySuccess();
     } catch (error) {
       console.error("Error updating user information", error);
     }
   };
-
+  // render the data for userData and userInput
   useEffect(() => {
     if (!loading && data && data.user) {
       setUserData(data.user);
@@ -66,9 +69,24 @@ const ProfilePage = () => {
         height: data.user.height,
         weight: data.user.weight,
         fullName: data.user.fullName,
+        profilePicture: data.user.profilePicture
       });
     }
   }, [loading, data])
+
+  // when user saves the information given, a notification pops up that it is saved
+  const toastifySuccess = () => {
+    toast.success('Information Saved!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: true,
+      pauseOnHover: true,
+      draggable: false,
+      closeOnClick: true,
+    });
+  };
+
+
 
   return (
     <section style={{ backgroundColor: '#eee' }}>
@@ -78,7 +96,7 @@ const ProfilePage = () => {
             <MDBCard className="mb-4">
               <MDBCardBody className="text-center">
                 <MDBCardImage
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                  src={userInput?.profilePicture || "https://cdn.icon-icons.com/icons2/1863/PNG/512/fitness-center_119129.png"}
                   alt="avatar"
                   className="rounded-circle"
                   style={{ width: '150px' }}
@@ -176,8 +194,9 @@ const ProfilePage = () => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      <ToastContainer />
     </section>
   );
 }
-// export
+
 export default ProfilePage;

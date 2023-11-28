@@ -54,36 +54,6 @@ export const REMOVE_TRACKER = gql`
   }
 `;
 
-export const FAVORITE_RECIPE = gql`
-  mutation favoriteRecipe($recipeInput: RecipeInput!) {
-    favoriteRecipe(recipeInput: $recipeInput) {
-      recipeId
-      name
-      description
-      recipeIngredients {
-        name
-        quantity
-      }
-      instructions
-    }
-  }
-`;
-
-export const REMOVE_RECIPE = gql`
-  mutation removeRecipe($recipeId: String!) {
-    removeRecipe(recipeId: $recipeId) {
-      recipeId
-      name
-      description
-      recipeIngredients {
-        name
-        quantity
-      }
-      instructions
-    }
-  }
-`;
-
 export const ADD_USER_INFORMATION = gql`
   mutation addUserInformation($userInput: UserInput!) {
     addUserInformation(userInput: $userInput){
@@ -93,6 +63,7 @@ export const ADD_USER_INFORMATION = gql`
       weight
       goal
       fullName
+      profilePicture
     }
   }
 `
