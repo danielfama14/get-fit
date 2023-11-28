@@ -1,4 +1,3 @@
-// WaterIntakeTracker.jsx
 import React, { useState } from 'react';
 import { useWaterCount } from './WaterCountContext';
 
@@ -23,6 +22,11 @@ function WaterIntakeTracker() {
       const newValue = parseInt(input, 10) + amount;
       return isNaN(newValue) ? '' : String(newValue);
     });
+  };
+
+  const handleReset = () => {
+    // Reset the water count to 0
+    setWaterCount(0);
   };
 
   return (
@@ -72,6 +76,16 @@ function WaterIntakeTracker() {
             onClick={handleAddWater}
           >
             Enter Water Intake
+          </button>
+          <button
+            style={{
+              backgroundColor: 'red',
+              color: 'white',
+              padding: '5px',
+            }}
+            onClick={handleReset}
+          >
+            Reset
           </button>
         </div>
       </div>
