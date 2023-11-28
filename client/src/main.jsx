@@ -18,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/myGetFitProfile',
-        element: Auth.loggedIn() ? <ProfilePage /> : <ErrorPage />
+        element: Auth.loggedIn() ? <ProfilePage /> : <Home />
       },
 
     ]

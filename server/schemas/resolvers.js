@@ -28,15 +28,6 @@ const resolvers = {
             }
         },
         // get single recipe from user's favorite arrays
-        getRecipe: async (parent, { recipeId }, context) => {
-            if (context.user) {
-                const updatedUser = await User.findById(
-                    { _id: context.user._id }
-                ).select('-__v -password');
-                const singleRecipe = updatedUser.recipe.find(recipe => recipe.recipeId === recipeId);
-                return singleRecipe;
-            }
-        },
     },
     Mutation: {
         addUser: async (parent, args) => {
@@ -87,28 +78,6 @@ const resolvers = {
                     { new: true }
                 ).select('-__v').populate('tracker');
                 return updatedUser;
-            }
-        },
-
-        // for the recipe
-        favoriteRecipe: async (parent, { recipeInput }, context) => {
-            if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $addToSet: { savedRecipes: recipeInput } },
-                    { new: true }
-                ).select('-__v').populate('savedRecipes');
-                return updatedUser;
-            }
-        },
-        removeRecipe: async (parent, { recipeId }, context) => {
-            if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $pull: { savedRecipes: { recipeId: recipeId } } },
-                    { new: true }
-                ).select('-__v').populate('savedRecipes');
-                return updatedUser
             }
         },
 

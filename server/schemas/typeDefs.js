@@ -7,8 +7,8 @@ type User {
     weight: String
     goal: String
     fullName: String
+    profilePicture: String
     tracker: [Tracker]
-    savedRecipes: [Recipe]
 }
 type Tracker {
     trackerId: ID!
@@ -20,18 +20,11 @@ type Tracker {
     waterIntake: Int
     notes: String
 }
-type Recipe {
-    recipeId: ID!
-    name: String!
-    description: String!
-    recipeIngredients: [String]!
-    instructions: String!
-}
+
 type Query {
     users: [User]
     user: User
     getTracker(trackerId: ID!): Tracker
-    getRecipe(recipeId: ID!): Recipe
 }
 
 type Auth {
@@ -46,12 +39,6 @@ input TrackerInput {
     waterIntake: Int
     notes: String
 }
-input RecipeInput {
-    name: String!
-    description: String!
-    recipeIngredients: [String]!
-    instructions: String!
-}
 
 input UserInput {
     username: String
@@ -60,6 +47,7 @@ input UserInput {
     weight: String
     goal: String
     fullName: String
+    profilePicture: String
 
 }
 type Mutation {
@@ -68,8 +56,6 @@ type Mutation {
     addUserInformation(userInput: UserInput): User
     trackToday(trackerInput: TrackerInput): User
     removeTracker(trackerId: ID!): User
-    favoriteRecipe(recipeInput: RecipeInput): User
-    removeRecipe(recipeId: ID!): User
 }
 `
 
