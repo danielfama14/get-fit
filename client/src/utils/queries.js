@@ -20,7 +20,7 @@ export const QUERY_ME = gql`
             height
             goal
             fullName
-
+            profilePicture
             # tracker {
             #     trackerId
             #     date
@@ -60,19 +60,4 @@ export const QUERY_SINGLE_TRACKER = gql`
                 notes
             }
     }
-`;
-
-export const QUERY_SINGLE_RECIPE = gql`
-  query getRecipe($recipeId: ID!) {
-    savedRecipes(recipeId: $recipeId) {
-                recipeId
-                name
-                description
-                recipeIngredients {
-                    name
-                    quantity
-                }
-                instructions
-      }
-  }
 `;

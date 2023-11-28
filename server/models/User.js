@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const trackerSchema = require('./Tracker');
-const recipesSchema = require('./Recipes');
 const userSchema = new Schema(
     {
         username: {
@@ -22,6 +21,9 @@ const userSchema = new Schema(
         fullName: {
             type: String,
         },
+        profilePicture: {
+            type: String,
+        },
         weight: {
             type: String,
         },
@@ -32,7 +34,6 @@ const userSchema = new Schema(
             type: String,
         },
         tracker: [trackerSchema],
-        savedRecipes: [recipesSchema],
     },
     // set this to use virtual below
     {
