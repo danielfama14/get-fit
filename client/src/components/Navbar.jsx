@@ -36,6 +36,9 @@ const AppNavbar = () => {
                   <Nav.Link as={Link} to='/myGetFitProfile'>
                     Profile
                   </Nav.Link>
+                  <Nav.Link as={Link} to='/searchWorkouts'>
+                    Search For Workouts
+                  </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (

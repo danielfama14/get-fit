@@ -41,6 +41,13 @@ export const QUERY_ME = gql`
             #     }
             #     instructions
             # }
+            workouts {
+              name
+              type
+              muscle
+              equipment
+              instructions
+            }
         }
     }
 `;

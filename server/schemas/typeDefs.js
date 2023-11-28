@@ -9,6 +9,7 @@ type User {
     fullName: String
     profilePicture: String
     tracker: [Tracker]
+    workouts: [Workout]
 }
 type Tracker {
     trackerId: ID!
@@ -19,6 +20,15 @@ type Tracker {
     sleepDuration: Int
     waterIntake: Int
     notes: String
+}
+
+type Workout {
+    workoutId: ID!
+    name: String
+    type: String
+    muscle: String
+    equipment: String
+    instructions: String
 }
 
 type Query {
@@ -50,12 +60,21 @@ input UserInput {
     profilePicture: String
 
 }
+input WorkoutInput {
+    name: String
+    type: String
+    muscle: String
+    equipment: String
+    instructions: String
+}
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addUserInformation(userInput: UserInput): User
     trackToday(trackerInput: TrackerInput): User
     removeTracker(trackerId: ID!): User
+    addWorkout(workoutInput: WorkoutInput): User
+    removeWorkout(workoutId: ID!): User
 }
 `
 

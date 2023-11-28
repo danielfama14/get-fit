@@ -67,3 +67,30 @@ export const ADD_USER_INFORMATION = gql`
     }
   }
 `
+
+export const ADD_WORKOUT = gql`
+  mutation addWorkout($workoutInput: WorkoutInput!) {
+    addWorkout(workoutInput: $workoutInput) {
+      name
+      type
+      muscle
+      equipment
+      instructions
+    }
+  }
+`
+export const DELETE_WORKOUT = gql`
+  mutation removeWorkout($workoutId: ID!) {
+    removeWorkout(workoutId: $workoutId){
+      username
+      email
+      workouts {
+        name
+        type
+        muscle
+        equipment
+        instructions
+      }
+    }
+  }
+`
