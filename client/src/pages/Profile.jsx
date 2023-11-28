@@ -28,7 +28,7 @@ const ProfilePage = () => {
   console.log('data: ', data);
 
   const [userData, setUserData] = useState('')
-
+  const [isDisabled, setAsDisabled] = useState(false);
   useEffect(() => {
     setUserData(data?.user)
   }, [data])
@@ -56,12 +56,17 @@ const ProfilePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Disable the button for 1 second
+      setTimeout(() => {
+        setAsDisabled(false);
+      }, 5000);
       await addUserInformation({
         variables: { userInput: userInput },
       });
 
       // Notification of saved
       toastifySuccess();
+      setAsDisabled(true)
     } catch (error) {
       console.error("Error updating user information", error);
     }
@@ -90,6 +95,7 @@ const ProfilePage = () => {
       pauseOnHover: true,
       draggable: false,
       closeOnClick: true,
+      toastId: "Saving User Infomration"
     });
   };
 
@@ -190,7 +196,7 @@ const ProfilePage = () => {
                       />
                     </MDBCol>
                   </MDBRow>
-                  <Button className='me-1 mx-auto' type="submit">
+                  <Button className='me-1 mx-auto' type="submit" disabled={isDisabled}>
                     Save Changes
                   </Button>
 
