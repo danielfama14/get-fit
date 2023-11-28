@@ -14,9 +14,9 @@ import {
   MDBBtn,
 } from 'mdb-react-ui-kit';
 
-import StepCounter from '../StepCounter';
-import WaterIntakeTracker from "../WaterIntakeTracker";
-// import WorkoutStatistics from "../WorkoutStatistics";
+import StepCounter from '../components/StepCounter';
+import WaterIntakeTracker from "../components/WaterIntakeTracker";
+// import WorkoutStatistics from "../components/WorkoutStatistics";
 
 const ProfilePage = () => {
   const { loading, data } = useQuery(QUERY_ME);
