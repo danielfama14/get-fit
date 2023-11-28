@@ -18,6 +18,11 @@ function StepCounter() {
     }
   };
 
+  const handleReset = () => {
+    // Reset the step count to 0
+    updateStepCount(0);
+  };
+
   return (
     <div style={{ textAlign: 'center', margin: '20px' }}>
       <h2 style={{ color: 'green' }}>Step Counter</h2>
@@ -39,6 +44,16 @@ function StepCounter() {
           onClick={handleAddStep}
         >
           Enter Step Count
+        </button>
+        <button
+          style={{
+            backgroundColor: 'red',
+            color: 'white',
+            padding: '5px',
+          }}
+          onClick={handleReset}
+        >
+          Reset
         </button>
       </div>
     </div>
