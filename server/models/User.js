@@ -19,11 +19,14 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
+        fullName: {
+            type: String,
+        },
         weight: {
-            type: Number
+            type: String,
         },
         height: {
-            type: Number
+            type: String,
         },
         goal: {
             type: String,

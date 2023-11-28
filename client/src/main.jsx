@@ -3,9 +3,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx';
 import Home from './pages/Home';
-import Profile from './pages/Profile';
+import ProfilePage from './pages/Profile';
 import ErrorPage from './pages/ErrorPage';
-import RecipePage from './pages/Recipe.jsx'
+import Auth from './utils/auth.js';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,12 +18,9 @@ const router = createBrowserRouter([
       },
       {
         path: '/myGetFitProfile',
-        element: <Profile />
+        element: Auth.loggedIn() ? <ProfilePage /> : <ErrorPage />
       },
-      {
-        path: '/recipe',
-        element: <RecipePage />
-      }
+
     ]
   },
 ]);

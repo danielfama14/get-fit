@@ -3,6 +3,10 @@ type User {
     _id: ID
     username: String
     email: String
+    height: String
+    weight: String
+    goal: String
+    fullName: String
     tracker: [Tracker]
     savedRecipes: [Recipe]
 }
@@ -48,9 +52,20 @@ input RecipeInput {
     recipeIngredients: [String]!
     instructions: String!
 }
+
+input UserInput {
+    username: String
+    email: String
+    height: String
+    weight: String
+    goal: String
+    fullName: String
+
+}
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
+    addUserInformation(userInput: UserInput): User
     trackToday(trackerInput: TrackerInput): User
     removeTracker(trackerId: ID!): User
     favoriteRecipe(recipeInput: RecipeInput): User

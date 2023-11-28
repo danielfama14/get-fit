@@ -52,7 +52,7 @@ export const REMOVE_TRACKER = gql`
       notes
     }
   }
-`
+`;
 
 export const FAVORITE_RECIPE = gql`
   mutation favoriteRecipe($recipeInput: RecipeInput!) {
@@ -67,7 +67,7 @@ export const FAVORITE_RECIPE = gql`
       instructions
     }
   }
-`
+`;
 
 export const REMOVE_RECIPE = gql`
   mutation removeRecipe($recipeId: String!) {
@@ -82,6 +82,17 @@ export const REMOVE_RECIPE = gql`
       instructions
     }
   }
-`
+`;
 
-  ;
+export const ADD_USER_INFORMATION = gql`
+  mutation addUserInformation($userInput: UserInput!) {
+    addUserInformation(userInput: $userInput){
+      username
+      email
+      height
+      weight
+      goal
+      fullName
+    }
+  }
+`

@@ -33,9 +33,6 @@ const AppNavbar = () => {
               </Nav.Link>
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/recipe'>
-                    See Your Recipes
-                  </Nav.Link>
                   <Nav.Link as={Link} to='/myGetFitProfile'>
                     Profile
                   </Nav.Link>

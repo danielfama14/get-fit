@@ -19,26 +19,28 @@ export const QUERY_ME = gql`
             weight
             height
             goal
-            tracker {
-                trackerId
-                date
-                workedOut
-                caloriesBurned
-                stepsTaken
-                sleepDuration
-                waterIntake
-                notes
-            }
-            savedRecipes {
-                recipeId
-                name
-                description
-                recipeIngredients {
-                    name
-                    quantity
-                }
-                instructions
-            }
+            fullName
+
+            # tracker {
+            #     trackerId
+            #     date
+            #     workedOut
+            #     caloriesBurned
+            #     stepsTaken
+            #     sleepDuration
+            #     waterIntake
+            #     notes
+            # }
+            # savedRecipes {
+            #     recipeId
+            #     name
+            #     description
+            #     recipeIngredients {
+            #         name
+            #         quantity
+            #     }
+            #     instructions
+            # }
         }
     }
 `;
