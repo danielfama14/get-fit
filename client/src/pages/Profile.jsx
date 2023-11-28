@@ -14,6 +14,10 @@ import {
   MDBBtn,
 } from 'mdb-react-ui-kit';
 
+// import for notification
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 import StepCounter from '../components/StepCounter';
 import WaterIntakeTracker from "../components/WaterIntakeTracker";
 // import WorkoutStatistics from "../components/WorkoutStatistics";
@@ -55,6 +59,9 @@ const ProfilePage = () => {
       await addUserInformation({
         variables: { userInput: userInput },
       });
+
+      // Notification of saved
+      toastifySuccess();
     } catch (error) {
       console.error("Error updating user information", error);
     }
@@ -73,6 +80,19 @@ const ProfilePage = () => {
       });
     }
   }, [loading, data])
+
+  // when user saves the information given, a notification pops up that it is saved
+  const toastifySuccess = () => {
+    toast.success('Information Saved!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: true,
+      pauseOnHover: true,
+      draggable: false,
+      closeOnClick: true,
+    });
+  };
+
 
   return (
     <section style={{ backgroundColor: '#eee' }}>
