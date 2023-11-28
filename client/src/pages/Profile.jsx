@@ -203,6 +203,7 @@ const ProfilePage = () => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      <ToastContainer />
     </section>
   );
 }
