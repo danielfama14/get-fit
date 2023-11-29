@@ -107,7 +107,7 @@ const SearchWorkouts = () => {
                 </Container>
             </div>
 
-            <Container style={{ maxHeight: '100vh' }}>
+            <Container style={{ paddingBottom: '150px', paddingTop: '40px' }}>
 
                 <Row className="g-4">
                     {searchedWorkouts?.map((exercise, index) => (
