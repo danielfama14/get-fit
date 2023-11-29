@@ -81,6 +81,27 @@ const resolvers = {
             }
         },
 
+        addWorkout: async (parent, { workoutInput }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { workouts: workoutInput } },
+                    { new: true },
+                ).select('-__v').populate('workouts');
+                return updatedUser
+            }
+        },
+        removeWorkout: async (parent, { workoutId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { workouts: { workoutId: workoutId } } },
+                    { new: true }
+                ).select('-__v').populate('workouts');
+                return updatedUser
+            }
+        }
+
 
     },
 
