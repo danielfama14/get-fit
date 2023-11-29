@@ -1,10 +1,13 @@
 import React from 'react';
+import landingImage from '../assets/landing_WIP.png'; // Adjust the path as necessary
 
 const Home = () => {
   return (
     <main>
       <div className="container text-center mt-5">
-        <h1 className="display-4">HELLO WORLD! THIS IS OUR GET FIT APP</h1>
+        <div className="image-container">
+          <img src={landingImage} alt="Landing Page" className="landing-image" />
+        </div>
         <p className="lead">
           This is your all-in-one solution for tracking fitness activities and
           achieving your health goals. Whether you're a seasoned athlete or

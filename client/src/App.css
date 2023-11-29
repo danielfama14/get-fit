@@ -15,3 +15,16 @@ h6 {
   font-weight: 300;
   font-style: italic;
 }
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-image {
+  max-width: 100%;
+  height: auto;
+  /* Adjust the max-height as needed */
+  max-height: 500px;
+}
