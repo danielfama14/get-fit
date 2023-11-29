@@ -8,64 +8,47 @@ import {
     Row
 } from 'react-bootstrap';
 
-import { useMutation } from '@apollo/client';
-import Auth from '../utils/auth';
+//import { useMutation } from '@apollo/client';
+//import Auth from '../utils/auth';
 import { searchExercises } from '../utils/API';
-import { saveWorkoutIds, getSavedWorkoutIds } from '../utils/localStorage'
+//import { saveWorkoutIds, getSavedWorkoutIds } from '../utils/localStorage'
 //import { QUERY_ME } from '../utils/queries';
 //import { ADD_WORKOUT } from '../utils/mutations'
 const SearchWorkouts = () => {
 
-    // create state for holding returned google api data
+    // create state for holding returned exercise api data
     const [searchedWorkouts, setSearchedWorkouts] = useState([]);
     // create state for holding our search field data
     const [searchInput, setSearchInput] = useState('');
 
-    // create state to hold saved bookId values
-    const [savedWorkoutIds, setSavedWorkoutIds] = useState(getSavedWorkoutIds());
+    // create state to hold saved exerciseId values
+    // const [savedWorkoutIds, setSavedWorkoutIds] = useState(getSavedWorkoutIds());
 
 
-    // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
-    // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
-    useEffect(() => {
-        return () => saveWorkoutIds(savedWorkoutIds);
-    });
+    // useEffect(() => {
+    //     console.log("In use effect", searchInput)
+    //     fetch(`https://api.api-ninjas.com/v1/exercises?muscle=${searchInput}`, {
+    //         method: 'GET',
+    //         headers: {
+    //             'X-Api-Key': 'CzFOeTT0EtP9tVynDq0F2A==8ThL2SiAyXH3sww9'
+    //         }
+    //       }
+    //     )
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       console.log(data)
+    //       setSearchedWorkouts(data);
+    //     }).catch((err) => {
+    //         console.log(err)
+    //     });
+    //   }, [searchInput]);
 
-    // create method to search for books and set state on form submit
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
-        if (!searchInput) {
-            return false;
-        }
-
-        try {
-            const response = await searchExercises(searchInput);
-            // response console logged works. API communicates
-            console.log('Response from the API', response)
-            if (!response.ok) {
-                throw new Error('Something went wrong!');
-            }
-
-            const { items } = await response.json();
-
-            const workoutData = items.map((workout) => ({
-                //workoutId: workout.id,
-                name: workout.name,
-                type: workout.type,
-                muscle: workout.muscle,
-                equipment: workout.equipment,
-                instructions: workout.instructions
-            }));
-
-            setSearchedWorkouts(workoutData);
-            setSearchInput('');
-
-        } catch (err) {
-            console.error(err);
-        }
+        const response = await searchExercises(searchInput);
+        setSearchedWorkouts(response);
     };
-
 
     // create mutation for saving books 
     // const [addWorkout] = useMutation(ADD_WORKOUT, {
@@ -124,22 +107,18 @@ const SearchWorkouts = () => {
                 </Container>
             </div>
 
-            <Container>
-                <h2 className='pt-5'>
-                    {searchedWorkouts.length
-                        ? `Viewing ${searchedWorkouts.length} results:`
-                        : 'Search for a workout to begin'}
-                </h2>
-                <Row>
-                    {searchedWorkouts.map((workout) => (
-                        <Col md="4" >
-                            <Card border='dark'>
+            <Container style={{ maxHeight: '100vh' }}>
+
+                <Row className="g-4">
+                    {searchedWorkouts?.map((exercise, index) => (
+                        <Col md="4" key={index}>
+                            <Card border='dark' style={{ width: '25rem' }}>
                                 <Card.Body>
-                                    <Card.Title>{workout.name}</Card.Title>
-                                    <p className='small'>Type: {workout.type}</p>
-                                    <p className='small'>Muscle: {workout.muscle}</p>
-                                    <p className='small'>Equipment: {workout.equipment}</p>
-                                    <Card.Text>{workout.instructions}</Card.Text>
+                                    <Card.Title>{exercise.name}</Card.Title>
+                                    <p className='small'>Type: {exercise.type}</p>
+                                    <p className='small'>Muscle: {exercise.muscle}</p>
+                                    <p className='small'>Equipment: {exercise.equipment}</p>
+                                    <Card.Text style={{ maxHeight: '100px', overflowY: 'auto' }}>{exercise.instructions}</Card.Text>
                                     {/*
                                     {Auth.loggedIn() && (
                                         <Button

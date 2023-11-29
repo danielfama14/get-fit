@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import ProfilePage from './pages/Profile';
 import ErrorPage from './pages/ErrorPage';
 import Auth from './utils/auth.js';
-import SearchWorkouts from './pages/SearchWorkouts.jsx'
+import SearchWorkouts from './pages/SearchWorkouts'
 const router = createBrowserRouter([
   {
     path: "/",
