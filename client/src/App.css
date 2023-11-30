@@ -11,6 +11,10 @@ h6 {
   font-family: 'Rubik Mono One', sans-serif;
 }
 
+.navbar-gradient {
+  background: linear-gradient(to right, #181818, #8d8d8d);
+}
+
 .small {
   font-weight: 300;
   font-style: italic;
