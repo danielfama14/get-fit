@@ -1,5 +1,5 @@
 export const searchExercises = (muscle) => {
-    return fetch(`https://api.api-ninjas.com/v1/exercises?muscle=${muscle}`, {
+    return fetch(`https://api.api-ninjas.com/v1/exercises?name=${muscle}`, {
         method: 'GET',
         headers: {
             'X-Api-Key': 'CzFOeTT0EtP9tVynDq0F2A==8ThL2SiAyXH3sww9'
