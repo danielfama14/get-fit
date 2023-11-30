@@ -9,11 +9,11 @@ const AppNavbar = () => {
   const [showModal, setShowModal] = useState(false);
 
   // Replace 'logo.png' with the actual image file name or URL
-  const logoImage = 'https://i.pinimg.com/originals/cd/a2/08/cda2081dfd2b1af5c0444a032294965c.png';
+  const logoImage = 'http://localhost:3000/src/assets/landing_WIP.png';
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar className='navbar-gradient' bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
             <img
