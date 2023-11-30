@@ -5,50 +5,26 @@ const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const GitHubProfiles = () => {
-    const usernames = ["Dunadunn", "gmtz0794", "chinosj89", "danielfama14"];
-    const [profiles, setProfiles] = useState([]);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-    useEffect(() => {
-      const fetchGitHubProfile = async (username) => {
-        const url = `https://api.github.com/users/${username}`;
-        try {
-          const response = await fetch(url);
-          if (response.ok) {
-            const data = await response.json();
-            return data;
-          } else {
-            throw new Error('Failed to fetch GitHub profile');
-          }
-        } catch (error) {
-          console.error('Error fetching GitHub profile:', error);
-          return null;
-        }
-      };
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if the user has scrolled down more than 100 pixels (adjust as needed)
+      const scrolled = window.scrollY > 100;
+      setIsScrolled(scrolled);
+    };
 
-      const fetchData = async () => {
-        const profilesData = await Promise.all(usernames.map(username => fetchGitHubProfile(username)));
-        setProfiles(profilesData.filter(profile => profile !== null));
-      };
+    // Attach the event listener
+    window.addEventListener('scroll', handleScroll);
 
-      fetchData();
-    }, []);
-
-    return (
-      <div className="d-flex flex-row justify-content-center">
-        {profiles.map(profile => (
-          <div key={profile.login} className="mr-3 mb-2">*
-            <a href={profile.html_url} target="_blank" rel="noopener noreferrer" className="mr-3 mb-2">
-              {profile.login}
-            </a>
-          </div>
-        ))}
-      </div>
-    );
-  };
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <footer className="w-100 m-auto bg-dark p-3 fixed-bottom text-sm">
+    <footer className={`w-100 m-auto bg-dark p-3 text-sm ${isScrolled ? 'hidden' : 'fixed-bottom'}`}>
       <div className="container text-center text-white mb-1">
         {/* {location.pathname !== '/' && (
           <button
@@ -69,9 +45,10 @@ const Footer = () => {
             ❤️
           </span>{' '}
           by the fitness-for-all team:
-
-          <GitHubProfiles />
         </h4>
+        <div className="d-flex flex-row justify-content-center">
+          {/* Render GitHub profiles here */}
+        </div>
       </div>
     </footer>
   );
